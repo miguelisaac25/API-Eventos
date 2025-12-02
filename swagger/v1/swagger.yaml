@@ -1,0 +1,153 @@
+---
+openapi: 3.0.1
+info:
+  title: API de Eventos - Final
+  version: v1
+  description: API desenvolvida para a disciplina de Web III com Rails 8
+paths:
+  "/events":
+    get:
+      summary: Listar todos os eventos
+      tags:
+      - Events
+      responses:
+        '200':
+          description: eventos encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    location:
+                      type: string
+                    start_time:
+                      type: string
+                      format: date_time
+    post:
+      summary: Criar um evento
+      tags:
+      - Events
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: evento criado
+        '401':
+          description: não autorizado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                event:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    start_time:
+                      type: string
+                      format: date_time
+                    end_time:
+                      type: string
+                      format: date_time
+                    location:
+                      type: string
+                  required:
+                  - title
+                  - start_time
+  "/registrations":
+    get:
+      summary: Listar inscrições
+      tags:
+      - Registrations
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: inscrições encontradas
+    post:
+      summary: Realizar inscrição
+      tags:
+      - Registrations
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: inscrição realizada
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                registration:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                    ticket_id:
+                      type: integer
+                  required:
+                  - ticket_id
+  "/tickets":
+    get:
+      summary: Listar ingressos
+      tags:
+      - Tickets
+      responses:
+        '200':
+          description: ingressos encontrados
+    post:
+      summary: Criar ingresso
+      tags:
+      - Tickets
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: ingresso criado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    price:
+                      type: number
+                    quantity:
+                      type: integer
+                    event_id:
+                      type: integer
+                  required:
+                  - name
+                  - price
+                  - event_id
+servers:
+- url: http://localhost:3000
+  description: Servidor Local
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: 'Token JWT. Exemplo: Bearer eyJhbGciOiJIUz...'

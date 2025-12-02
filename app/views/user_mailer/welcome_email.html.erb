@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Olá, <%= @user.name %>!</h1>
+    <p>
+      Sua conta foi criada com sucesso no nosso Sistema de Eventos.
+    </p>
+    <p>
+      Seu perfil de acesso é: <strong><%= @user.role.name %></strong>
+    </p>
+    <p>
+      Para acessar sua conta, faça login via API ou clique aqui: <a href="<%= @url %>">Login</a>.
+    </p>
+    <p>Obrigado por se juntar a nós!</p>
+  </body>
+</html>
