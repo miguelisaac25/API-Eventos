@@ -44,7 +44,7 @@
 ### 2. Clonar o projeto
 
 ```bash
-git clone [[https://github.com/SEU_USUARIO/events_api.git](https://github.com/miguelisaac25/API-Eventos.git)]
+git clone [[https://github.com/miguelisaac25/API-Eventos.git]]
 cd events_api
 ```
 ### 3. Intalar dependências
